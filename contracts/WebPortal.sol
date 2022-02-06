@@ -7,13 +7,30 @@ import "hardhat/console.sol";
 contract WebPortal {
   uint256 totalWaves;
 
-  constructor() {
-    console.log("Yippeee!!! I just ran my first smart contract on blockchain");
+  event NewWave(address indexed from, uint256 timestamp, string message);
+
+  struct Wave {
+    address waver; // the address of the user who waved
+    string message; // the message the user sent
+    uint256 timestamp; // the timestamp when the user waved
   }
 
-  function wave() public {
+  Wave[] waves;
+
+  constructor() {
+    console.log("I am a Smart Contract. POG.");
+  }
+
+  function wave(string memory _message) public {
     totalWaves += 1;
-    console.log("%s has waved!", msg.sender);
+    console.log("%s has waved w/ message %s", msg.sender, _message);
+
+    waves.push(Wave(msg.sender, _message, block.timestamp));
+    emit NewWave(msg.sender, block.timestamp, _message);
+  }
+
+  function getAllWaves() public view returns (Wave[] memory) {
+    return waves;
   }
 
   function getTotalWaves() public view returns (uint256) {
