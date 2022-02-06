@@ -173,17 +173,15 @@ export default function App() {
         )}
 
         <form onSubmit={handleSubmit}>
-          <label>
-            Enter Your Message:
-            <textarea
-              name="message"
-              id=""
-              cols="30"
-              rows="10"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-            ></textarea>
-          </label>
+          <label>Enter Your Message:</label>
+          <textarea
+            name="message"
+            id=""
+            cols="30"
+            rows="10"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></textarea>
         </form>
 
         <button className="waveButton" onClick={wave}>
